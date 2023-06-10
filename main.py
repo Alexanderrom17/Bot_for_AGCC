@@ -17,7 +17,7 @@ def welcome(message):
 @bot.message_handler(content_types=['text'])
 def user_text(message):
     if message.text.lower() == 'привет':
-        markup = types.InlineKeyboardMarkup(row_width=2,)
+        markup = types.InlineKeyboardMarkup(row_width=2)
         item1 = types.InlineKeyboardButton(text="1251", callback_data='open_new_buttons_1251')
         item2 = types.InlineKeyboardButton(text="1354", callback_data='open_new_buttons_1354')
         markup.add(item1, item2)
@@ -32,7 +32,9 @@ def handle_button_click(call):
     button1 = types.InlineKeyboardButton(text='Кнопка 1 1251', callback_data='button1_1251_clicked')
     button2 = types.InlineKeyboardButton(text='Кнопка 2 1251', callback_data='button2_1251_clicked')
     button3 = types.InlineKeyboardButton(text='Назад', callback_data='back')
-    keyboard.add(button1, button2, button3)
+    keyboard.add(button1)
+    keyboard.add(button2)
+    keyboard.add(button3)
     bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
                           text="Перед проведением работ внимательно изучи инструкцию", reply_markup=keyboard)
 
@@ -43,7 +45,9 @@ def handle_button_click(call):
     button1 = types.InlineKeyboardButton(text='Кнопка 1 1354', callback_data='button1_1354_clicked')
     button2 = types.InlineKeyboardButton(text='Кнопка 2 1354', callback_data='button2_1354_clicked')
     button3 = types.InlineKeyboardButton(text='Назад', callback_data='back')
-    keyboard.add(button1, button2, button3)
+    keyboard.add(button1)
+    keyboard.add(button2)
+    keyboard.add(button3)
     bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
                           text="Перед проведением работ внимательно изучи инструкцию", reply_markup=keyboard)
 
