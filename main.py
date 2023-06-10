@@ -29,8 +29,8 @@ def user_text(message):
 @bot.callback_query_handler(func=lambda call: call.data == 'open_new_buttons_1251')
 def handle_button_click(call):
     keyboard = types.InlineKeyboardMarkup()
-    button1 = types.InlineKeyboardButton(text='Кнопка 1', callback_data='button1_clicked')
-    button2 = types.InlineKeyboardButton(text='Кнопка 2', callback_data='button2_clicked')
+    button1 = types.InlineKeyboardButton(text='Кнопка 1 1251', callback_data='button1_1251_clicked')
+    button2 = types.InlineKeyboardButton(text='Кнопка 2 1251', callback_data='button2_1251_clicked')
     button3 = types.InlineKeyboardButton(text='Назад', callback_data='back')
     keyboard.add(button1, button2, button3)
     bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
@@ -40,21 +40,23 @@ def handle_button_click(call):
 @bot.callback_query_handler(func=lambda call: call.data == 'open_new_buttons_1354')
 def handle_button_click(call):
     keyboard = types.InlineKeyboardMarkup()
-    button1 = types.InlineKeyboardButton(text='Кнопка 1', callback_data='button1_clicked')
-    button2 = types.InlineKeyboardButton(text='Кнопка 2', callback_data='button2_clicked')
+    button1 = types.InlineKeyboardButton(text='Кнопка 1 1354', callback_data='button1_1354_clicked')
+    button2 = types.InlineKeyboardButton(text='Кнопка 2 1354', callback_data='button2_1354_clicked')
     button3 = types.InlineKeyboardButton(text='Назад', callback_data='back')
     keyboard.add(button1, button2, button3)
     bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
                           text="Перед проведением работ внимательно изучи инструкцию", reply_markup=keyboard)
 
 
-@bot.callback_query_handler(func=lambda call: call.data == 'button1_clicked')
+@bot.callback_query_handler(func=lambda call: call.data == 'button1_1251_clicked')
 def handle_button1_click(call):
     bot.answer_callback_query(call.id, text='Нажата кнопка 1')
+    with open('Instruction.txt', 'rb') as file:
+        bot.send_document(chat_id=call.message.chat.id, data=file, document=file)
 
 
 @bot.callback_query_handler(func=lambda call: call.data == 'button2_clicked')
-def handle_button1_click(call):
+def handle_button2_click(call):
     bot.answer_callback_query(call.id, text='Нажата кнопка 2')
 
 
