@@ -5,7 +5,7 @@ token = "6148868274:AAGera4iHzE-P4cBIj830JbJ3Q3YRcgPnq0"
 bot = telebot.TeleBot(token)
 
 
-@bot.message_handler(['start'])
+@bot.message_handler(commands=['start'])
 def welcome(message):
     user_name = message.from_user.first_name
     sticker = open("Hello.tgs", 'rb')
@@ -31,7 +31,19 @@ def handle_button_click(call):
     keyboard = types.InlineKeyboardMarkup()
     button1 = types.InlineKeyboardButton(text='Кнопка 1', callback_data='button1_clicked')
     button2 = types.InlineKeyboardButton(text='Кнопка 2', callback_data='button2_clicked')
-    keyboard.add(button1, button2)
+    button3 = types.InlineKeyboardButton(text='Назад', callback_data='back')
+    keyboard.add(button1, button2, button3)
+    bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
+                          text="Перед проведением работ внимательно изучи инструкцию", reply_markup=keyboard)
+
+
+@bot.callback_query_handler(func=lambda call: call.data == 'open_new_buttons_1354')
+def handle_button_click(call):
+    keyboard = types.InlineKeyboardMarkup()
+    button1 = types.InlineKeyboardButton(text='Кнопка 1', callback_data='button1_clicked')
+    button2 = types.InlineKeyboardButton(text='Кнопка 2', callback_data='button2_clicked')
+    button3 = types.InlineKeyboardButton(text='Назад', callback_data='back')
+    keyboard.add(button1, button2, button3)
     bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
                           text="Перед проведением работ внимательно изучи инструкцию", reply_markup=keyboard)
 
@@ -41,9 +53,20 @@ def handle_button1_click(call):
     bot.answer_callback_query(call.id, text='Нажата кнопка 1')
 
 
-@bot.callback_query_handler(func=lambda call: call.data == 'button1_clicked')
+@bot.callback_query_handler(func=lambda call: call.data == 'button2_clicked')
 def handle_button1_click(call):
-    bot.answer_callback_query(call.id, text='Нажата кнопка 1')
+    bot.answer_callback_query(call.id, text='Нажата кнопка 2')
+
+
+@bot.callback_query_handler(func=lambda call: call.data == 'back')
+def handle_button_back(call):
+    keyboard = types.InlineKeyboardMarkup()
+    button1 = types.InlineKeyboardButton(text='1251', callback_data='open_new_buttons_1251')
+    button2 = types.InlineKeyboardButton(text='1354', callback_data='open_new_buttons_1354')
+    keyboard.add(button1, button2)
+    bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
+                          text="Перед проведением работ внимательно изучи инструкцию", reply_markup=keyboard)
+
 
 # @bot.callback_query_handler(func=lambda call: True)
 # def callback_inline(call):
