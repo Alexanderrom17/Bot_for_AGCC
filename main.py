@@ -172,7 +172,6 @@ def handle_button_back(call):
 #         bot.send_message(call.message.chat.id, 'Бывает')
 # bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
 #                       text="Перед проведением работ внимательно изучи инструкцию", reply_markup=None)
-
 # bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
 #                       text="Перед проведением работ внимательно изучи инструкцию", reply_markup=None)
 # elif call.data == '1354':
@@ -181,8 +180,6 @@ def handle_button_back(call):
 #         bot.send_message(call.message.chat.id, 'Бывает')
 # bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
 #                       text="Перед проведением работ внимательно изучи инструкцию", reply_markup=None)
-
-#
 
 
 bot.polling(none_stop=True)
